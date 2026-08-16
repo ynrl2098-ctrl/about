@@ -242,6 +242,14 @@
       </div>
     </section>
 
+    <!-- Interactive Glass Modal Backdrop (Placed directly below Volunteer Events) -->
+    <div id="infoModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
     <!-- 6. Suit Arsenal (Skills Section) -->
     <section id="skills" class="section">
       <div class="section-header">
@@ -270,14 +278,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Interactive Glass Modal Backdrop -->
-    <div id="infoModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
-      <div class="modal-box glass-card">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <div id="modalContent"></div>
-      </div>
-    </div>
 
     <!-- Footer Signal Box -->
     <footer class="footer-card glass-card">
