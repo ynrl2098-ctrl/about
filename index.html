@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pavan Kumar Yerramsetty | Oracle Apps DBA Portfolio</title>
+  <title>Pavan Kumar Yerramsetty | Senior Apps DBA Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,7 +199,7 @@
       </div>
     </section>
 
-    <!-- 5. Community & Volunteer Activities (TCS Initiatives) -->
+    <!-- 5. Community & Volunteer Activities (Interactive Cards) -->
     <section id="volunteer" class="section">
       <div class="section-header">
         <span class="section-tag">HERO INITIATIVES</span>
@@ -207,34 +207,37 @@
       </div>
 
       <div class="grid-3">
-        <div class="glass-card">
+        <div class="glass-card clickable-card" onclick="openModal('gala')">
           <div class="card-sound">TCS EVENT</div>
           <div class="card-icon">🎉</div>
           <h3>Gala Events</h3>
           <p class="institution">Tata Consultancy Services (TCS)</p>
           <p class="hero-description" style="font-size: 0.9rem; margin-top: 0.5rem;">
-            Actively organized and coordinated major corporate gala events, driving employee engagement, team collaboration, and large-scale event operations.
+            Actively organized and coordinated major corporate gala events...
           </p>
+          <span class="click-hint">Click for Full Details ➔</span>
         </div>
 
-        <div class="glass-card">
+        <div class="glass-card clickable-card" onclick="openModal('hope')">
           <div class="card-sound">CSR IMPACT</div>
           <div class="card-icon">❤️</div>
           <h3>HOPE Event</h3>
           <p class="institution">Tata Consultancy Services (TCS)</p>
           <p class="hero-description" style="font-size: 0.9rem; margin-top: 0.5rem;">
-            Participated in CSR social outreach programs under the HOPE initiative, supporting community welfare, awareness drives, and social development causes.
+            Participated in CSR social outreach programs under the HOPE initiative...
           </p>
+          <span class="click-hint">Click for Full Details ➔</span>
         </div>
 
-        <div class="glass-card">
+        <div class="glass-card clickable-card" onclick="openModal('corp')">
           <div class="card-sound">LEADERSHIP</div>
           <div class="card-icon">🤝</div>
           <h3>Corporate Volunteering</h3>
           <p class="institution">TCS Community Initiatives</p>
           <p class="hero-description" style="font-size: 0.9rem; margin-top: 0.5rem;">
-            Dedicated volunteering time for internal TCS workplace activities, team engagement initiatives, and social impact drives.
+            Dedicated volunteering time for internal TCS workplace activities...
           </p>
+          <span class="click-hint">Click for Full Details ➔</span>
         </div>
       </div>
     </section>
@@ -268,10 +271,18 @@
       </div>
     </section>
 
+    <!-- Interactive Glass Modal Backdrop -->
+    <div id="infoModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
     <!-- Footer Signal Box -->
     <footer class="footer-card glass-card">
       <h2>SEND SPIDER-SIGNAL</h2>
-      <p>Looking for an Oracle Applications Database Administrator</p>
+      <p>Looking for a high-precision Oracle Applications Database Administrator?</p>
       <a href="mailto:ynrl2098@gmail.com" class="btn btn-primary email-btn">ynrl2098@gmail.com</a>
     </footer>
 
@@ -296,6 +307,73 @@
       requestAnimationFrame(animateCursor);
     }
     animateCursor();
+
+    // Detail Data Store for Modal Popup
+    const detailsData = {
+      gala: {
+        tag: "TCS CORPORATE EVENT",
+        icon: "🎉",
+        title: "TCS Gala Events",
+        sub: "Tata Consultancy Services (TCS)",
+        bullets: [
+          "Led logistics, stage management, and operations for TCS employee celebration galas.",
+          "Fostered inter-departmental engagement and team-building activities across multi-functional units.",
+          "Managed vendor setups, schedule timelines, and technical requirements during annual corporate meetups."
+        ]
+      },
+      hope: {
+        tag: "CSR SOCIAL IMPACT",
+        icon: "❤️",
+        title: "TCS HOPE Initiative",
+        sub: "Tata Consultancy Services (TCS)",
+        bullets: [
+          "Participated in community welfare drives focusing on education, health awareness, and social empowerment.",
+          "Supported corporate social responsibility (CSR) initiatives by organizing fund/resource allocation campaigns.",
+          "Partnered with non-profit volunteers to deliver positive impact directly to underserved communities."
+        ]
+      },
+      corp: {
+        tag: "LEADERSHIP & ENGAGEMENT",
+        icon: "🤝",
+        title: "Corporate Volunteering & Workplace Culture",
+        sub: "TCS Community Initiatives",
+        bullets: [
+          "Mentored junior team members and coordinated internal tech/non-tech workplace activities.",
+          "Championed sustainability and environmental awareness drives within the TCS campus network.",
+          "Promoted collaborative work culture by executing health & wellness workshops."
+        ]
+      }
+    };
+
+    function openModal(key) {
+      const data = detailsData[key];
+      if (!data) return;
+
+      const content = `
+        <div class="mission-tag text-gold" style="margin-bottom:0.8rem;">${data.tag}</div>
+        <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem;">
+          <span style="font-size:2.2rem;">${data.icon}</span>
+          <div>
+            <h2 style="font-family:'Space Grotesk',sans-serif; font-size:1.8rem;">${data.title}</h2>
+            <p class="institution">${data.sub}</p>
+          </div>
+        </div>
+        <ul class="task-list" style="margin-top:1.5rem;">
+          ${data.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      `;
+
+      document.getElementById('modalContent').innerHTML = content;
+      document.getElementById('infoModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'infoModal') closeModal();
+    }
   </script>
 </body>
 </html>
