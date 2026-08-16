@@ -37,7 +37,7 @@ body {
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 12px var(--accent-red), 0 0 24px var(--accent-red);
 }
@@ -189,6 +189,7 @@ body {
   font-size: 1.15rem;
   line-height: 1.6;
   max-width: 750px;
+  margin: 1rem 0 1.8rem 0;
 }
 
 .hero-actions {
@@ -335,6 +336,83 @@ body {
   font-weight: 700;
 }
 
+/* Clickable Volunteer Cards */
+.clickable-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.click-hint {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-yellow);
+  transition: transform 0.3s ease;
+}
+
+.clickable-card:hover .click-hint {
+  transform: translateX(6px);
+  color: var(--accent-red);
+}
+
+/* Modal Window System */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  border: 2px solid var(--accent-red) !important;
+  box-shadow: 0 0 35px rgba(230, 36, 41, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.active .modal-box {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: rgba(230, 36, 41, 0.2);
+  border: 1px solid var(--accent-red);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--accent-red);
+  box-shadow: 0 0 12px var(--accent-red);
+}
+
 /* Timeline */
 .timeline-container {
   display: flex;
@@ -363,6 +441,10 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+}
+
+.text-gold {
+  color: var(--accent-yellow);
 }
 
 .task-list {
